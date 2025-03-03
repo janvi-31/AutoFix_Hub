@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Our Premium Services</title>
+        <link href="f1.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+            import { getFirestore, collection, query, where, orderBy, limit, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+            import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        
+            const firebaseConfig = {
+                apiKey: "AIzaSyDRHoqY0RRUD_wAW9X9w4Vt_Azrybxa3T8",
+                authDomain: "auth-1d5aa.firebaseapp.com",
+                projectId: "auth-1d5aa",
+                storageBucket: "auth-1d5aa.appspot.com",
+                messagingSenderId: "875774322424",
+                appId: "1:875774322424:web:9fc1625b07409a338dbd0d"
+            };
+        
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            const auth = getAuth(app);
+        
+            let userOrderDocId = null;
+        
+            async function fetchUserData() {
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            console.log("User is logged in.");
+
+            // Fill the name from authentication
+            const nameField = document.getElementById('name');
+            if (nameField) {
+                nameField.value = user.displayName || "";
+            }
+
+            // Fetch phone number and address from Firestore
+            const ordersRef = collection(db, "orders");
+            const q = query(ordersRef, where("email", "==", user.email), orderBy("timestamp", "desc"), limit(1));
+
+            try {
+                const querySnapshot = await getDocs(q);
+                if (!querySnapshot.empty) {
+                    querySnapshot.forEach((doc) => {
+                        const userProfile = doc.data();
+                        console.log("🔥 Fetched User Profile from Firestore:", userProfile);
+
+                        // Save the document ID
+        userOrderDocId = doc.id;  // 🔥 Save the document ID here!
+        console.log("✅ User order document ID:", userOrderDocId);
+
+                        const phoneField = document.getElementById('phonenumber');
+                        const addressField = document.getElementById('address');
+
+                        // Fill the phone and address only if they exist
+                        if (phoneField) phoneField.value = userProfile.phoneNumber || "";
+                        if (addressField) addressField.value = userProfile.address || "";
+                    });
+                } else {
+                    console.log("No order data found for the user.");
+                    userOrderDocId = null; // Reset the ID if no order is found
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        } else {
+            alert("User not logged in!");
+        }
+    });
+}
+
+window.onload = function() {
+    fetchUserData();
+};
+
+
+
+            async function saveProfileChanges(event) {
+                event.preventDefault();
+                const user = auth.currentUser;
+                if (user) {
+                    const updatedName = document.getElementById('name').value;
+                    const updatedPhone = document.getElementById('phonenumber').value;
+                    const updatedAddress = document.getElementById('address').value;
+        
+                    try {
+                        await updateProfile(user, { displayName: updatedName });
+                        console.log("Auth profile updated.");
+        
+                        if (userOrderDocId) {
+                            const orderDocRef = doc(db, "orders", userOrderDocId);
+                            await updateDoc(orderDocRef, {
+                                phoneNumber: updatedPhone,
+                                address: updatedAddress
+                            });
+                            console.log("Order data updated.");
+                        }
+        
+                        alert("Profile updated successfully!");
+                        closeAllModals();
+                    } catch (error) {
+                        console.error("Error updating profile:", error);
+                        alert("Failed to update profile.");
+                    }
+                }
+            }
+        
+            window.fetchUserData = fetchUserData;
+            window.saveProfileChanges = saveProfileChanges;
+
+
+            window.fetchServiceHistory = async function fetchServiceHistory() {
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const q = query(collection(db, "services"), where("email", "==", user.email), orderBy("timestamp", "desc"));
+            const querySnapshot = await getDocs(q);
+
+            const historyContainer = document.querySelector("#serviceHistoryModal p");
+            historyContainer.innerHTML = "";
+
+            querySnapshot.forEach((doc) => {
+                const service = doc.data();
+
+                // Check if service is an object
+                if (service.services && typeof service.services === "object") {
+                    historyContainer.innerHTML += `
+                        <div class="service-item">
+                            <strong>${service.services.name}</strong>
+                            <p>Total Amount: ${service.services.price}</p>
+                            <p><em>Date:</em> ${service.timestamp.toDate().toLocaleString()}</p>
+                        </div>
+                    `;
+                } else {
+                    historyContainer.innerHTML += "<p>No service history found.</p>";
+                    console.log("services is not an object:", service.services);
+                }
+            });
+        }
+    });
+}
+
+        </script>
+        
+    </head>
+    <body>
+
+        <!-- NAV-BAR -->
+
+        <header class="header">
+
+            <!--WEBSITE NAME-->
+            <div class="logo">AutoFix Hub</div>
+
+            <!--SEARCH-->
+            <!-- <div class="search-bar">
+                <i class='bx bx-search-alt'></i>
+                <input type="text" placeholder="Search services...">
+            </div> -->
+
+            <!--CART AND PROFILE-->
+            <div class="icons">
+                <a href="cart.html"><i class='bx bxs-cart'></i></a>
+                <i class='bx bxs-user-circle' onclick="toggleMenu(event)" style="cursor: pointer;"></i>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a onclick="openEditProfile(event); fetchUserData();">Edit Profile<i class='bx bx-chevron-right'></i></a>
+                    <a onclick="fetchServiceHistory(), openServiceHistory(event)">Service History<i class='bx bx-chevron-right'></i></a>
+                    <a onclick="logoutUser(event)">Logout<i class='bx bx-chevron-right'></i></a>
+                </div>
+            </div>
+        </header>
+
+
+        <!--SERVICES SECTION-->
+
+        <div class="main-content">
+
+            <!--DESCRIPTION-->
+            <div class="hero">
+                <h1>Explore Our Premium Car Services</h1>
+                <p>Ensuring quality care for your vehicle with our expert solutions.</p>
+                <div class="highlight-text">BOOK NOW</div>
+                <div class="arrow-down">&#8595;</div>
+            </div>
+
+            <!--ALL SERVICES-->
+            <div class="services-grid">
+                <a href="periodic.html">
+                    <div class="service-card" id="periodic">
+                        <span class="badge">Popular</span>
+                        <img src="assets/periodic.png" alt="Periodic Services">
+                        <h3>Periodic Services</h3>
+                        <p>Maintain peak performance with regular check-ups.</p>
+                    </div>
+                </a>
+
+                <a href="cleaning.html">
+                    <div class="service-card" id="cleaning">
+                        <img src="assets/cleaning.png" alt="Cleaning">
+                        <h3>Cleaning</h3>
+                        <p>Interior & exterior cleaning for a fresh, new look.</p>
+                    </div>
+                </a>
+                
+                <a href="denting.html">
+                    <div class="service-card" id="denting">
+                        <img src="assets/denting.png" alt="Denting">
+                        <h3>Denting</h3>
+                        <p>Expert dent removal to restore your car's beauty.</p>
+                    </div>
+                </a>
+                
+                <a href="detailing.html">
+                    <div class="service-card" id="detailing">
+                        <span class="badge">New</span>
+                        <img src="assets/detailing.png" alt="Detailing">
+                        <h3>Detailing Services</h3>
+                        <p>Attention to detail, inside and out.</p>
+                    </div>
+                </a>
+                
+                <a href="tyre.html">
+                    <div class="service-card" id="tyre">
+                        <img src="assets/tyre.png" alt="Tyre and Wheel Care">
+                        <h3>Tyre & Wheel Care</h3>
+                        <p>Comprehensive tyre check-ups and alignment.</p>
+                    </div>
+                </a>
+                
+                <a href="windshield.html">
+                    <div class="service-card" id="windshield">
+                        <img src="assets/windshield.png" alt="Windshield">
+                        <h3>Windshield & Wiper</h3>
+                        <p>Clear vision with our expert windshield care.</p>
+                    </div>
+                </a>
+                
+                <a href="clutch.html">
+                    <div class="service-card" id="clutch">
+                        <img src="assets/clutch.png" alt="Clutch">
+                        <h3>Clutch & Fitments</h3>
+                        <p>Smooth gear shifts with our clutch services.</p>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+
+        <div class="modal" id="editProfileModal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <i class='bx bxs-user-circle'></i>
+                <h2>Edit Profile</h2>
+            </div>
+            <form onsubmit="saveProfileChanges(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+
+                <label for="phonenumber">Phone:</label>
+                <input type="tel" id="phonenumber" name="phone" placeholder="Enter your phone number">
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address">
+
+                <div class="button-container">
+                    <button type="submit">Save Changes</button>
+                    <button type="button" onclick="closeAllModals()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div class="modal" id="serviceHistoryModal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <i class='bx bx-history'></i>
+                <h2>Service History</h2>
+            </div>
+            <p>Your past services will be listed here...</p>
+        </div>
+        
+        <!--URL FOR BACK-ARROW-->
+        
+        <script>
+            sessionStorage.setItem("previousPage", window.location.href);
+
+            function toggleMenu(event) {
+                event.stopPropagation();
+                closeAllModals();
+                const menu = document.getElementById('dropdownMenu');
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+
+    // Save changes and update profile data
+    function saveProfileChanges(event) {
+        event.preventDefault();
+
+        userProfile.name = document.getElementById('name').value;
+        userProfile.email = document.getElementById('email').value;
+        userProfile.phonenumber = document.getElementById('phonenumber').value;
+
+        alert("Profile updated successfully!");
+        closeAllModals();
+    }
+
+            function openEditProfile(event) {
+                event.stopPropagation();
+                closeAllModals();
+                closeDropdown();
+                openModal('editProfileModal');
+            }
+
+            function openServiceHistory(event) {
+                event.stopPropagation();
+                closeAllModals();
+                closeDropdown();
+                openModal('serviceHistoryModal');
+            }
+
+            function logoutUser(event) {
+                event.stopPropagation();
+                closeDropdown();
+                closeAllModals();
+                if (confirm("Are you sure you want to log out?")) {
+                    window.location.href = 'login.html';
+                }
+            }
+
+            function openModal(id) {
+                document.getElementById(id).style.display = 'block';
+            }
+            function closeDropdown() {
+                document.getElementById('dropdownMenu').style.display = 'none';
+            }
+
+            function closeAllModals() {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+
+            window.onclick = function(event) {
+                if (!event.target.closest('.dropdown-menu') && !event.target.closest('.modal')) {
+                    closeDropdown();
+                    closeAllModals();
+                }
+            }
+        </script>
+    </body>
+</html>

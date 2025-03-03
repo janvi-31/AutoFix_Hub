@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service Details - Periodic Services</title>
+        <link href="services.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!--NAVBAR-->
+        <header class="navbar">
+            <a href="f1.html" class="back-btn"><i class='bx bx-arrow-back'></i></a>
+            <h1>Service Details</h1>
+        </header>
+
+        <!--DESCRIPTION-->
+        <div class="hero-section">
+            <section class="periodic-services">
+                <h2>Periodic Services</h2>
+                <p>Keep your vehicle in peak condition with our specialized periodic services.</p>
+                <p>Choose the plan that suits your needs best.</p>
+            </section>
+        </div>
+
+
+        <!--PLANS-->
+
+        <section class="service-detail-container">
+
+
+            <!--TWO-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Two-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹1,099</p>
+                        <ul>
+                            <li>Oil Change</li>
+                            <li>Tyre & Brake Inspection</li>
+                            <li>Chain & Gears Checking</li>
+                            <li>Lights, Horn & Indicators Testing</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Two-Wheeler','₹1,099')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹3,499</p>
+                        <ul>
+                            <li>Basic Service</li>
+                            <li>Coolant Flush Replacement</li>
+                            <li>Spark Plug Inspection & Replacement</li>
+                            <li>Cleaning & Detailing</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Two-Wheeler','₹3,499')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹4,999</p>
+                        <ul>
+                            <li>Spark Plug Inspection & Replacement</li>
+                            <li>Engine Tuning & Diagnostics</li>
+                            <li>Electrical System Checking</li>
+                            <li>Brake & Suspension Check</li>
+                            <li>Fuel System Checking</li>
+                            <li>Complimentary Wash</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Two-Wheeler','₹4,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--THREE-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Three-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹3,000</p>
+                        <ul>
+                            <li>Oil Change</li>
+                            <li>Tyre & Brake Inspection</li>
+                            <li>Spark Plug Maintenance</li>
+                            <li>Fuel System Maintenance</li>
+                            <li>Chassis & Suspension Inspection</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Three-Wheeler','₹3,000')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹5,099</p>
+                        <ul>
+                            <li>Frame & Body Inspection</li>
+                            <li>Oil & Filter Replacement</li>
+                            <li>Brake Inspection & Tire Rotation</li>
+                            <li>Chain Maintenance</li>
+                            <li>Coolant Top-up</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Three-Wheeler','₹5,099')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹6,999</p>
+                        <ul>
+                            <li>Full Vehicle Inspection</li>
+                            <li>Electrical System Checking</li>
+                            <li>Brake & Suspension Check</li>
+                            <li>Steering & Alignment Checking</li>
+                            <li>Fuel System Maintenance</li>
+                            <li>Complimentary wash</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Three-Wheeler','₹6,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--FOUR-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Four-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹4,999</p>
+                        <ul>
+                            <li>Oil Change</li>
+                            <li>Air Filter Cleaning</li>
+                            <li>Battery Test</li>
+                            <li>Brake & Tyre Inspection</li>
+                            <li>Lights & Wiper Checking</li>
+                            <li>Interior Vacuuming (Carpets and Seats)</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Four-Wheeler','₹4,999')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹8,999</p>
+                        <ul>
+                            <li>Basic Service</li>
+                            <li>Wiper Blade Replacement</li>
+                            <li>Exhaust System Check</li>
+                            <li>Battery Health Check</li>
+                            <li>Heater/Spark Plug Checking</li>
+                            <li>Washing & Detailing</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Four-Wheeler','₹8,999')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹10,009</p>
+                        <ul>
+                            <li>Basic Service</li>
+                            <li>Full Car Inspection</li>
+                            <li>Engine Tuning & Diagnostics</li>
+                            <li>Cabin Air Filter Replacement</li>
+                            <li>Wheel Balancing & Alignment</li>
+                            <li>Complimentary Wash</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Four-Wheeler','₹10,009')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="services.js"></script>
+        
+    </body>
+</html>

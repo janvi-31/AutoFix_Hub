@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+    background-color: #bec1c7;
+}
+
+
+/*NAVBAR*/
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background: #414143;
+    padding: 15px 25px;
+}
+.navbar a i{
+    color: white;
+}
+.navbar h1 {
+    flex: 1;
+    color: white;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 8px;
+    font-weight: normal;
+}
+.back-btn {
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/*DESCRIPTION*/
+
+.periodic-services{
+    background: url('assets/service.jpg') no-repeat center center/cover;
+    /* background: linear-gradient(180deg,#1f1111,#545050); */
+    padding: 30px;
+    text-align: center;
+    border-radius: 20px;
+    position: relative;
+}
+.periodic-services::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Dark overlay for contrast */
+    border-radius: 20px;
+}
+/* Ensure text appears above the overlay */
+.periodic-services * {
+    position: relative;
+    z-index: 1;
+}
+.hero-section {
+    padding: 20px 180px;
+}
+.hero-section h2 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: #ca2626;
+}
+.hero-section p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: white;
+}
+
+
+/*PLANS*/
+
+.service-detail-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+.vehicle-type{
+    margin-bottom: 40px;
+}
+h2{
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1f2b37;
+}
+.plans-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+
+/*PLAN CARDS*/
+
+.plan-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 10px rgba(0, 0, 0, 0.2);
+}
+.plan-card h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #c22525;
+}
+.price {
+    font-size: 24px;
+    color: #00796b;
+    margin: 10px 0;
+    font-weight: bold;
+}
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+.plan-card li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    margin: 8px 0;
+}
+.plan-card li::before {
+    content: '✔️';
+}
+.select-plan-btn {
+    width: 100%;
+    padding: 12px;
+    background: #c63232;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.select-plan-btn:hover {
+    background: #a3001e;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+    .navbar h1 {
+        font-size: 20px;
+    }
+    .hero-section {
+        padding: 20px;
+    }
+    .hero-section h2 {
+        font-size: 32px;
+    }
+    .hero-section p {
+        font-size: 16px;
+    }
+    .plans-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .plan-card {
+        padding: 20px;
+    }
+}
+
+/* Extra Small devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .navbar h1 {
+        font-size: 18px;
+        width: 100%;
+    }
+    .hero-section h2 {
+        font-size: 28px;
+    }
+    .hero-section p {
+        font-size: 14px;
+    }
+    .plan-card h3 {
+        font-size: 22px;
+    }
+    .select-plan-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

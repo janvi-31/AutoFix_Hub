@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="login.css" rel="stylesheet" />
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+        <title>Login</title>
+        <script type="module">
+            import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js';
+            import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, updateProfile, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
+            import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+            import { GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
+    
+            const firebaseConfig = {
+                apiKey: "AIzaSyDRHoqY0RRUD_wAW9X9w4Vt_Azrybxa3T8",
+                authDomain: "auth-1d5aa.firebaseapp.com",
+                projectId: "auth-1d5aa",
+                storageBucket: "auth-1d5aa.appspot.com",
+                messagingSenderId: "875774322424",
+                appId: "1:875774322424:web:9fc1625b07409a338dbd0d"
+            };
+    
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+    
+            // REGISTER USER
+            document.getElementById('signUpForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('signUpName').value.trim();
+                const email = document.getElementById('signUpEmail').value.trim();
+                const password = document.getElementById('signUpPassword').value;
+    
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+    
+                    await updateProfile(user, { displayName: name });
+                    await setDoc(doc(db, 'users', user.uid), { fullName: name, email: email });
+    
+                    alert(`Registration Successful! Welcome, ${name}`);
+                    window.location.href = "f1.html";
+                } catch (error) {
+                    alert(`Registration Failed: ${error.message}`);
+                }
+            });
+    
+            // LOGIN USER
+            document.getElementById('signInForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('signInEmail').value;
+                const password = document.getElementById('signInPassword').value;
+    
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    alert(`Welcome, ${userCredential.user.displayName || userCredential.user.email}!`);
+                    window.location.href = "f1.html";
+                } catch (error) {
+                    alert(`Login Failed: ${error.message}`);
+                }
+            });
+    
+            // PASSWORD RESET
+            document.getElementById('forgotPassword').addEventListener('click', () => {
+                const email = prompt("Enter your email to reset password:");
+                if (email) {
+                    sendPasswordResetEmail(auth, email)
+                        .then(() => alert('Password reset email sent!'))
+                        .catch((error) => alert(`Error: ${error.message}`));
+                }
+            });
+    
+            // ANIMATION
+            const container = document.querySelector('.container');
+            document.querySelector('.register-btn').addEventListener('click', () => container.classList.add('active'));
+            document.querySelector('.login-btn').addEventListener('click', () => container.classList.remove('active'));
+
+            async function googleSignIn() {
+    const provider = new GoogleAuthProvider();
+
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // Save the user's name to Firestore if not already there
+        /* const userDoc = await db.collection("users").doc(user.uid).get();
+        if (!userDoc.exists) {
+            await db.collection("users").doc(user.uid).set({
+                fullName: user.displayName,
+                email: user.email
+            });
+        } */
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        
+        if (!userDoc.exists()) {
+            await setDoc(userDocRef, {
+                fullName: user.displayName,
+                email: user.email
+            });
+        }
+
+        alert(`Welcome, ${user.displayName}! 🎉`);
+        window.location.href = "f1.html"; // Redirect
+    } catch (error) {
+        alert(`Google Sign-In Failed: ${error.message}`);
+        console.error("Google Sign-In Error:", error);
+    }
+}
+window.googleSignIn = googleSignIn;
+
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="authStatus"></div>
+
+            <!--LOGIN-->
+
+            <div class="form-box login">
+                <form id="signInForm">
+                    <h1>LOGIN</h1>
+
+                    <!--EMAIL-->
+                    <div class="input">
+                        <input type="email" id="signInEmail" placeholder="Email" required>
+                        <i class='bx bxs-envelope'></i>
+                    </div>
+
+                    <!--PASSWORD-->
+                    <div class="input">
+                        <input type="password" id="signInPassword" placeholder="Password" required>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+
+                    <!--FORGOT PASSWORD-->
+                    <div class="forget">
+                        <a href="#" id="forgotPassword">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn">Sign In</button>
+                    <p>or sign in with social platforms</p>
+
+                    <!--SOCIALS-->
+                    <div class="social">
+                        <button style="border: none; text-decoration: none; background-color: white;" onclick="googleSignIn()"><a><i class='bx bxl-google'></i></a></button>
+                        <a href="#"><i class='bx bxl-github'></i></a>
+                        <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+                    </div>
+                </form>
+            </div>
+
+
+            <!--REGISTER-->
+
+            <div class="form-box register">
+                <form action="" id="signUpForm">
+                    <h1>REGISTRATION</h1>
+
+                    <!--NAME-->
+                    <div class="input">
+                        <input type="text" id="signUpName" placeholder="Name" required>
+                        <i class='bx bxs-user'></i>
+                    </div>
+
+                    <!--EMAIL-->
+                    <div class="input">
+                        <input type="email" id="signUpEmail" placeholder="Email" required>
+                        <i class='bx bxs-envelope'></i>
+                    </div>
+
+                    <!--PASSWORD-->
+                    <div class="input">
+                        <input type="password" id="signUpPassword" placeholder="Password" required>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+
+                    <button type="submit" class="btn">Sign Up</button>
+                    <p>or sign up with social platforms</p>
+
+                    <!--SOCIALS-->
+                    <div class="social">
+                        <button style="border: none; text-decoration: none; background-color: white;" onclick="googleSignIn()"><a><i class='bx bxl-google'></i></a></button>
+                        <a href="#"><i class='bx bxl-github'></i></a>
+                        <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+                    </div>
+                </form>
+            </div>
+
+
+            <!--TOGGLE BOX-->
+
+            <div class="toggle-box">
+                <div class="toggle-panel toggle-left">
+                    <h1>Hello, Welcome!</h1>
+                    <p>Don't have an account?</p>
+                    <button class="btn register-btn">Sign Up</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Welcome Back!</h1>
+                    <p>Already have an account?</p>
+                    <button class="btn login-btn">Sign In</button>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

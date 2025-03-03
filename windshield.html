@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service Details - Windshield and Wiper</title>
+        <link href="services.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!--NAVBAR-->
+        <header class="navbar">
+            <a href="f1.html" class="back-btn"><i class='bx bx-arrow-back'></i></a>
+            <h1>Service Details</h1>
+        </header>
+
+        <!--DESCRIPTION-->
+        <div class="hero-section">
+            <section class="periodic-services">
+                <h2>Windshield and Wiper</h2>
+                <p>Maintain clear visibility & ensure safety with our professional windshield & wiper services.</p>
+                <p>Choose the plan that suits your needs best.</p>
+            </section>
+        </div>
+
+
+        <!--PLANS-->
+
+        <section class="service-detail-container">
+
+
+            <!--THREE-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Three-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹1,199</p>
+                        <ul>
+                            <li>Windshield Cleaning</li>
+                            <li>Basic Wiper Inspection</li>
+                            <li>Water Repellent Coating</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Three-Wheeler','₹1,199')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹2,999</p>
+                        <ul>
+                            <li>Wiper Blade Replacement</li>
+                            <li>Windshield Crack Inspection</li>
+                            <li>Glass Polish & Protection</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Three-Wheeler','₹2,999')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹4,999</p>
+                        <ul>
+                            <li>Full Windshield & Wiper Check</li>
+                            <li>Complete Wiper Assembly Replacement</li>
+                            <li>Glass Protection Film & Coating</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Three-Wheeler','₹4,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--FOUR-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Four-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹1,999</p>
+                        <ul>
+                            <li>Windshield Cleaning</li>
+                            <li>Basic Wiper Check</li>
+                            <li>Glass Polish</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Four-Wheeler','₹1,999')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹4,499</p>
+                        <ul>
+                            <li>Wiper Blade Replacement</li>
+                            <li>Windshield Crack Inspection</li>
+                            <li>Glass Protection Coating</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Four-Wheeler','₹4,499')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹6,999</p>
+                        <ul>
+                            <li>Full Windshield & Wiper Check</li>
+                            <li>Complete Wiper Assembly Replacement</li>
+                            <li>Glass Protection Film & Coating</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Four-Wheeler','₹6,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>     
+        </section>
+
+        <script src="services.js"></script>
+
+    </body>
+</html>

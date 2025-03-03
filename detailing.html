@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service Details - Detailing Services</title>
+        <link href="services.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!--NAVBAR-->
+        <header class="navbar">
+            <a href="f1.html" class="back-btn"><i class='bx bx-arrow-back'></i></a>
+            <h1>Service Details</h1>
+        </header>
+
+        <!--DESCRIPTION-->
+        <div class="hero-section">
+            <section class="periodic-services">
+                <h2>Detailing Services</h2>
+                <p>Enhance & protect your vehicle's appearance with our professional detailing services.</p>
+                <p>Choose the plan that suits your needs best.</p>
+            </section>
+        </div>
+
+
+        <!--PLANS-->
+
+        <section class="service-detail-container">
+
+
+            <!--TWO-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Two-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹999</p>
+                        <ul>
+                            <li>Exterior Wash</li>
+                            <li>Wax Coating</li>
+                            <li>Tyre Polishing</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Two-Wheeler','₹999')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹1,999</p>
+                        <ul>
+                            <li>Basic Detailing</li>
+                            <li>Paint Protection</li>
+                            <li>Seat & Dashboard Cleaning</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Two-Wheeler','₹1,999')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹3,499</p>
+                        <ul>
+                            <li>Full Body Polishing</li>
+                            <li>Premium Wax Coating</li>
+                            <li>Scratch Removal</li>
+                            <li>Engine Bay Cleaning</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Two-Wheeler','₹3,499')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--THREE-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Three-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹1,499</p>
+                        <ul>
+                            <li>Exterior Wash</li>
+                            <li>Wax Coating</li>
+                            <li>Interior Vacuuming</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Three-Wheeler','₹1,499')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹2,999</p>
+                        <ul>
+                            <li>Basic Detailing</li>
+                            <li>Seat & Dashboard Cleaning</li>
+                            <li>Glass Polishing</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Three-Wheeler','₹2,999')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹4,999</p>
+                        <ul>
+                            <li>Full Body Polishing</li>
+                            <li>Premium Wax Coating</li>
+                            <li>Scratch Removal</li>
+                            <li>Interior Deep Cleaning</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Three-Wheeler','₹4,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--FOUR-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Four-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹2,499</p>
+                        <ul>
+                            <li>Exterior Wash</li>
+                            <li>Wax Coating</li>
+                            <li>Tyre Polishing</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Four-Wheeler','₹2,499')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹4,999</p>
+                        <ul>
+                            <li>Basic Detailing</li>
+                            <li>Seat & Dashboard Cleaning</li>
+                            <li>Glass & Tyre Polishing</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Four-Wheeler','₹4,999')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹7,999</p>
+                        <ul>
+                            <li>Full Body Polishing</li>
+                            <li>Premium Wax Coating</li>
+                            <li>Scratch Removal</li>
+                            <li>Interior Deep Cleaning</li>
+                            <li>Engine Bay Cleaning</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Four-Wheeler','₹7,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="services.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Confirmation</title>
+        <link href="confirmation.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #bec1c7;
+                text-align: center;
+            }
+            .confirmation-container {
+                max-width: 500px;
+                margin: 50px auto;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                color: green;
+            }
+            .home-btn {
+                display: inline-block;
+                margin-top: 15px;
+                padding: 10px 20px;
+                background: #c22525;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+            @media screen and (max-width: 768px) {
+                .confirmation-container {
+                    max-width: 80%;
+                    padding: 15px;
+                }
+
+                h2 {
+                    font-size: 22px;
+                }
+
+                .home-btn {
+                    font-size: 16px;
+                    padding: 8px 16px;
+                }
+            }
+
+            /* For Mobile */
+            @media screen and (max-width: 480px) {
+                .confirmation-container {
+                    max-width: 90%;
+                    padding: 10px;
+                }
+
+                h2 {
+                    font-size: 20px;
+                }
+
+                .home-btn {
+                    font-size: 14px;
+                    padding: 8px 14px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="confirmation-container">
+            <i class='bx bx-check-circle' style="font-size: 50px; color: green;"></i>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for choosing our services.</p>
+            <p>We’ll arrive shortly to get your vehicle running at its best.</p>
+            <p><strong>Name:</strong> <span id="order-name"></span></p>
+            <p><strong>Pickup Date:</strong> <span id="order-date"></span></p>
+            <p><strong>Pickup Time:</strong> <span id="order-time"></span></p>
+            <p><strong>Payment ID:</strong> <span id="order-payment"></span></p>
+
+            <a href="f1.html" class="home-btn">Return to Home</a>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const params = new URLSearchParams(window.location.search);
+                document.getElementById("order-name").textContent = params.get("name");
+                document.getElementById("order-date").textContent = params.get("date");
+                document.getElementById("order-time").textContent = params.get("time");
+                document.getElementById("order-payment").textContent = params.get("paymentId");
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service Details - Clutch and Fitments</title>
+        <link href="services.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!--NAVBAR-->
+        <header class="navbar">
+            <a href="f1.html" class="back-btn"><i class='bx bx-arrow-back'></i></a>
+            <h1>Service Details</h1>
+        </header>
+
+        <!--DESCRIPTION-->
+        <div class="hero-section">
+            <section class="periodic-services">
+                <h2>Clutch and Fitments</h2>
+                <p>Ensure smooth gear shifts & enhance vehicle performance with our clutch & fitments service.</p>
+                <p>Choose the plan that suits your needs best.</p>
+            </section>
+        </div>
+
+
+        <!--PLANS-->
+
+        <section class="service-detail-container">
+
+
+            <!--TWO-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Two-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹1,199</p>
+                        <ul>
+                            <li>Clutch Cable Adjustment</li>
+                            <li>Clutch Plate Inspection</li>
+                            <li>Lubrication of Clutch Components</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Two-Wheeler','₹1,199')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹2,999</p>
+                        <ul>
+                            <li>Basic Service</li>
+                            <li>Clutch Plate Replacement</li>
+                            <li>Transmission Fluid Top-up</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Two-Wheeler','₹2,999')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹4,499</p>
+                        <ul>
+                            <li>Full Clutch System Check</li>
+                            <li>Clutch Assembly Replacement</li>
+                            <li>Gearbox & Transmission Inspection</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Two-Wheeler','₹4,499')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--THREE-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Three-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹1,999</p>
+                        <ul>
+                            <li>Clutch Cable Adjustment</li>
+                            <li>Clutch Wear Inspection</li>
+                            <li>Lubrication & Cleaning</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Three-Wheeler','₹1,999')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹3,999</p>
+                        <ul>
+                            <li>Clutch Plate Replacement</li>
+                            <li>Transmission Oil Change</li>
+                            <li>Gear Shifting Adjustment</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Three-Wheeler','₹3,999')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹5,999</p>
+                        <ul>
+                            <li>Full Clutch System Replacement</li>
+                            <li>Flywheel & Pressure Plate Check</li>
+                            <li>Transmission Overhaul</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Three-Wheeler','₹5,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--FOUR-WHEELER-->
+
+            <div class="vehicle-type">
+                <h2>Four-Wheeler Plans</h2>
+                <div class="plans-container">
+
+                    <!--BASIC-->
+                    <div class="plan-card basic">
+                        <h3>Basic Plan</h3>
+                        <p class="price">₹2,999</p>
+                        <ul>
+                            <li>Clutch Cable Inspection</li>
+                            <li>Basic Clutch Adjustment</li>
+                            <li>Transmission Fluid Check</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Basic Plan - Four-Wheeler','₹2,999')">Select Plan</button>
+                    </div>
+        
+                    <!--STANDARD-->
+                    <div class="plan-card medium">
+                        <h3>Standard Plan</h3>
+                        <p class="price">₹6,499</p>
+                        <ul>
+                            <li>Clutch Disc & Plate Replacement</li>
+                            <li>Hydraulic Clutch Bleeding</li>
+                            <li>Gearbox System Check</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Standard Plan - Four-Wheeler','₹6,499')">Select Plan</button>
+                    </div>
+        
+                    <!--COMPREHENSIVE-->
+                    <div class="plan-card standard">
+                        <h3>Comprehensive Plan</h3>
+                        <p class="price">₹9,999</p>
+                        <ul>
+                            <li>Complete Clutch & Fitments Overhaul</li>
+                            <li>Pressure Plate & Flywheel Replacement</li>
+                            <li>Gearbox & Transmission Service</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="addToCart('Comprehensive Plan - Four-Wheeler','₹9,999')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="services.js"></script>
+
+    </body>
+</html>

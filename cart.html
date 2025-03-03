@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cart</title>
+        <link href="cart.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+            import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+            import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        
+            const firebaseConfig = {
+                apiKey: "AIzaSyDRHoqY0RRUD_wAW9X9w4Vt_Azrybxa3T8",
+                authDomain: "auth-1d5aa.firebaseapp.com",
+                projectId: "auth-1d5aa",
+                storageBucket: "auth-1d5aa.appspot.com",
+                messagingSenderId: "875774322424",
+                appId: "1:875774322424:web:9fc1625b07409a338dbd0d"
+            };
+        
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            const auth = getAuth(app);
+        
+            function goToCheckout() {
+                const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+                const totalPrice = document.getElementById("total-price").innerText;
+        
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        try {
+                            await addDoc(collection(db, "services"), {
+                                email: user.email,
+                                services: cartItems[0],
+                                totalAmount: totalPrice,
+                                timestamp: serverTimestamp()
+                            });
+                            console.log("Service details saved to Firestore");
+                            alert("Service details saved! Redirecting to checkout...");
+                            window.location.href = 'checkout.html';
+                        } catch (error) {
+                            console.error("Error saving service details: ", error);
+                            alert("Failed to save service details.");
+                        }
+                    } else {
+                        alert("Please log in to save your services!");
+                    }
+                });
+            }
+            window.goToCheckout = goToCheckout;
+
+        </script>
+    </head>
+    <body>
+
+        <!--NAVBAR-->
+        <header class="navbar">
+            <a href="javascript:void(0);" class="back-btn" onclick="goBack()">
+                <i class='bx bx-arrow-back'></i>
+            </a>
+            <h1>Your Cart</h1>
+        </header>
+
+        <!--CART CONTENT-->
+        <section class="cart-container">
+            <h2>Selected Services</h2>
+            <div class="cart-items" id="cart-items"></div>
+
+            <!--TOTAL PRICE-->
+            <div class="cart-total">
+                <h3>Total: ₹<span id="total-price">0</span></h3>
+                <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+            </div>
+        </section>
+
+        <script>
+            function loadCart() {
+                let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+                let cartContainer = document.getElementById("cart-items");
+                let totalPrice = 0;
+                cartContainer.innerHTML = "";
+
+                cartItems.forEach((item, index) => {
+                    let itemElement = document.createElement("div");
+                    itemElement.classList.add("cart-item");
+                    itemElement.innerHTML = `
+                        <h3>${item.name}</h3>
+                        <p class="price">${item.price}</p>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    `;
+                    cartContainer.appendChild(itemElement);
+                    totalPrice += parseInt(item.price.replace(/[^0-9]/g, ""));
+                });
+                document.getElementById("total-price").innerText = totalPrice;
+            }
+
+            function removeFromCart(index) {
+                let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+                cartItems.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cartItems));
+                loadCart();
+            }
+
+            /* function goToCheckout() {
+                let totalPrice = document.getElementById("total-price").innerText;
+                localStorage.setItem("totalAmount", totalPrice);
+                window.location.href = 'checkout.html';
+            } */
+
+            document.addEventListener("DOMContentLoaded", loadCart);
+        </script>
+        <script>
+            function goBack() {
+                let previousPage = sessionStorage.getItem("previousPage");
+                if (previousPage) {
+                    window.location.href = previousPage; // Redirect to stored page
+                } else {
+                    window.location.href = "p1.html"; // Fallback if no previous page
+                }
+            }
+        </script>
+    </body>
+</html>

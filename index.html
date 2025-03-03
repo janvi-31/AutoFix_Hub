@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet" />
+        <title>AutoFix Hub</title>
+    </head>
+    <body>
+
+        <!--MAIN SECTION-->
+
+        <section class="header">
+            <nav>
+                <div class="nav__bar">
+
+                    <!--WEBISTE NAME AND LOGO-->
+                    <div class="nav">
+                        <a href="#"><img src="assets/logo.png" alt="logo"/></a>
+                        <h1>AutoFix Hub</h1>
+                    </div>
+
+                    <!--LOGIN BUTTON-->
+                    <a href="login.html" class="btn">LOGIN</a>
+
+                    <!--DIFFERENT SECTIONS-->
+                    <div class="nav__links">
+                        <ul>
+                            <li class="hideOnMobile"><a href=".services">SERVICES</a></li>
+                            <li class="hideOnMobile"><a href=".guarantee">GUARANTEE</a></li>
+                            <li class="hideOnMobile"><a href=".contact">CONTACT</a></li>
+                            <li class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="-300 -700 960 960" width="26px" fill="#fff"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+                        </ul>
+                    </div>
+                    <ul class="sidebar" id="sidebar">
+                        <li onclick=hideSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#fff"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+                        <li><a href="#services">SERVICES</a></li>
+                        <li><a href="#guarantee">GUARANTEE</a></li>
+                        <li><a href="#contact">CONTACT</a></li>
+                    </ul>
+
+                    <!--LINE DESCRIPTION-->
+                    <p>We prioritize your vehicle's performance and safety.</p>
+
+                </div>
+            </nav>
+        </section>
+
+
+        <!--SERVICE SECTION-->
+
+        <section class="services" id="services">
+
+            <!--HEADING-->
+            <h2 class="s">Services</h2>
+
+            <div class="row">     
+                <div class="s-col">
+                    <img src="assets/periodic.png" alt="periodic">
+                    <h4>Periodic Services</h4>
+                </div>
+
+                <div class="s-col">
+                    <img src="assets/cleaning.png" alt="cleaning">
+                    <h4>Cleaning</h4>
+                </div>
+
+                <div class="s-col">
+                    <img src="assets/denting.png" alt="denting">
+                    <h4>Denting</h4>
+                </div>
+
+                <div class="s-col">
+                    <img src="assets/tyre.png" alt="tyre">
+                    <h4>Tyre and Wheel Care</h4>
+                </div>
+
+                <div class="s-col">
+                    <img src="assets/detailing.png" alt="detailing">
+                    <h4>Detailing Services</h4>
+                </div>
+
+                <div class="s-col">
+                    <img src="assets/windshield.png" alt="windshield">
+                    <h4>Windshield and Wiper</h4>
+                </div>
+
+                <div class="s-col">
+                    <img src="assets/clutch.png" alt="clutches">
+                    <h4>Clutch and Fitments</h4>
+                </div> 
+            </div> 
+        </section>
+
+
+        <!--GUARANTEE SECTION-->
+
+        <section class="guarantee" id="guarantee">
+
+            <!--HEADING-->
+            <h2 class="g">Guarantee</h2>
+
+            <div class="check">
+                <ul class="g-list">
+                    <li>High - Quality Services.</li>
+                    <li>Affordable prices.</li>
+                    <li>Customer Satisfaction.</li>
+                    <li>Free Pickup and Drop Service.</li>
+                    <li>Genuine Spare Parts.</li>
+                    <li>Timely Repair.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!--CONTACT SECTION-->
+
+        <section class="contact" id="contact">
+
+            <div class="contact-left">
+                <h2>Contact Us</h2>
+
+                <div class="brand">
+                    <img src="assets/logo.png" alt="logo" class="logo" />
+                    <h1>AutoFix Hub</h1>
+                </div>
+
+                <div class="social">
+                    <img src="assets/facebook.png" alt="facebook" />
+                    <img src="assets/instagram.png" alt="instagram" />
+                    <img src="assets/whatsapp.png" alt="whatsApp" />
+                </div>
+
+            </div>
+
+            <div class="contact-right">
+                <ul>
+                    <li>
+                        <span class="icon">📧</span>
+                        <span>Email : </span>
+                        <span>info@autofix.in</span>
+                    </li>
+                    <li>
+                        <span class="icon">📞</span>
+                        <span>Phone Number : </span>
+                        <span>9214317102</span>
+                    </li>
+                    <li>
+                        <span class="icon">📅</span>
+                        <span>Working Days : </span>
+                        <span>Monday - Saturday</span>
+                    </li>
+                    <li>
+                        <span class="icon">⏰</span>
+                        <span>Working Hours : </span>
+                        <span>8:00AM - 10:00PM</span>
+                    </li>
+                </ul>
+            </div>
+
+        </section> 
+
+
+        <!--BACK-TO-TOP ARROW-->
+        
+        <div id="progress">
+            <span id="progress-value">&#x1F815;</span>
+        </div>
+
+        <script src="main.js"></script>
+
+    </body>
+</html>
