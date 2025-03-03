@@ -27,6 +27,7 @@
             function goToCheckout() {
                 const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
                 const totalPrice = document.getElementById("total-price").innerText;
+                localStorage.setItem("totalAmount", totalPrice);
         
                 onAuthStateChanged(auth, async (user) => {
                     if (user) {
@@ -103,11 +104,9 @@
                 loadCart();
             }
 
-            /* function goToCheckout() {
-                let totalPrice = document.getElementById("total-price").innerText;
-                localStorage.setItem("totalAmount", totalPrice);
-                window.location.href = 'checkout.html';
-            } */
+            function goToCheckout() {
+                
+            }
 
             document.addEventListener("DOMContentLoaded", loadCart);
         </script>
